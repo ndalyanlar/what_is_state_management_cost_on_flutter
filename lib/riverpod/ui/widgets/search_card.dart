@@ -1,21 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
-import '../../data/search_provider.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:what_is_state_management_cost_on_flutter/riverpod/providers/providers.dart';
+
+import '../../../data/search_provider.dart';
 import '../colors.dart';
 import 'custom_dropdown.dart';
 
-class SearchCard extends StatefulWidget {
-  const SearchCard({
-    Key? key,
-  }) : super(key: key);
+class SearchCard extends ConsumerWidget {
+  const SearchCard({super.key});
 
   @override
-  State<SearchCard> createState() => _SearchCardState();
-}
-
-class _SearchCardState extends State<SearchCard> {
-  @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return Card(
       elevation: 4,
       color: Colors.grey.shade50,
@@ -42,10 +37,11 @@ class _SearchCardState extends State<SearchCard> {
                       ),
                       autofocus: false,
                       textInputAction: TextInputAction.done,
-                      onSubmitted:
-                          context.read<SearchStateNotifier>().onSubmitted,
-                      controller: context
-                          .read<SearchStateNotifier>()
+                      onSubmitted: ref
+                          .read<SearchStateNotifier>(searchProvider)
+                          .onSubmitted,
+                      controller: ref
+                          .read<SearchStateNotifier>(searchProvider)
                           .searchTextController,
                     ),
                   ),
@@ -55,17 +51,21 @@ class _SearchCardState extends State<SearchCard> {
                       Icons.arrow_drop_down,
                       color: lightGrey,
                     ),
-                    onSelected: context.read<SearchStateNotifier>().onSelected,
+                    onSelected: ref
+                        .read<SearchStateNotifier>(searchProvider)
+                        .onSelected,
                     itemBuilder: (BuildContext context) {
-                      return context
-                          .read<SearchStateNotifier>()
+                      return ref
+                          .read<SearchStateNotifier>(searchProvider)
                           .previousSearches
                           .map<CustomDropdownMenuItem<String>>((String value) {
                         return CustomDropdownMenuItem<String>(
                           text: value,
                           value: value,
                           callback: () {
-                            context.read<SearchStateNotifier>().remove(value);
+                            ref
+                                .read<SearchStateNotifier>(searchProvider)
+                                .remove(value);
                             Navigator.pop(context);
                           },
                         );
@@ -75,11 +75,11 @@ class _SearchCardState extends State<SearchCard> {
                   IconButton(
                     icon: const Icon(Icons.search),
                     onPressed: () {
-                      final searchController = context
-                          .read<SearchStateNotifier>()
+                      final searchController = ref
+                          .read<SearchStateNotifier>(searchProvider)
                           .searchTextController;
-                      context
-                          .read<SearchStateNotifier>()
+                      ref
+                          .read<SearchStateNotifier>(searchProvider)
                           .startSearch(searchController.text);
                     },
                   ),

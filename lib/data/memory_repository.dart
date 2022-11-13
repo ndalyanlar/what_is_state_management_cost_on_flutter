@@ -55,8 +55,8 @@ class MemoryRepository extends ChangeNotifier implements Repository {
   @override
   void deleteRecipe(Recipe recipe) {
     _currentRecipes.remove(recipe);
-    if (recipe.id != null) {
-      deleteRecipeIngredients(recipe.label!);
+    if (recipe.ingredients != null) {
+      deleteIngredients(recipe.ingredients!);
     }
     notifyListeners();
   }

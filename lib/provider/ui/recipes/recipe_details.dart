@@ -2,9 +2,9 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:provider/provider.dart';
-import '../../network/recipe_model.dart';
-import '../../data/models/recipe.dart';
-import '../../data/memory_repository.dart';
+import '../../../network/recipe_model.dart';
+import '../../../data/models/recipe.dart';
+import '../../../data/memory_repository.dart';
 import '../colors.dart';
 
 class RecipeDetails extends StatelessWidget {
