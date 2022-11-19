@@ -9,6 +9,5 @@ abstract class SearchStateState extends Equatable {
 
 class SearchStateInitial extends SearchStateState {
   final SearchStateNotifier searchStateNotifier;
-
   const SearchStateInitial(this.searchStateNotifier);
 }
