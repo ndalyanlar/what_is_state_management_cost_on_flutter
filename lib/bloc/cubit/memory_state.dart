@@ -1,13 +1,17 @@
-part of 'memory_cubit.dart';
+// part of 'memory_cubit.dart';
 
-abstract class MemoryState extends Equatable {
-  const MemoryState();
+// abstract class MemoryState extends Equatable {
+//   const MemoryState();
 
-  @override
-  List<Object> get props => [];
-}
+//   @override
+//   List<Object> get props => [];
+// }
 
-class MemoryInitial extends MemoryState {
-  final MemoryRepository repository;
-  const MemoryInitial(this.repository);
-}
+// class MemoryInitial extends MemoryState {
+//   final MemoryRepository repository;
+//   const MemoryInitial(this.repository);
+// }
+
+// class MemoryLoading extends MemoryState {}
+
+// class MemoryLoaded extends MemoryState {}

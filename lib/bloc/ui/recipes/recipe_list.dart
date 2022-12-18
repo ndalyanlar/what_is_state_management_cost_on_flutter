@@ -46,28 +46,6 @@ class _RecipeListState extends State<RecipeList> {
   void initState() {
     super.initState();
     context.read<SearchStateNotifier>().getPreviousSearches();
-    // _scrollController = ScrollController();
-    // // getPreviousSearches();
-
-    // searchTextController = TextEditingController(text: '');
-    // _scrollController.addListener(() {
-    //   final triggerFetchMoreSize =
-    //       0.7 * _scrollController.position.maxScrollExtent;
-
-    //   if (_scrollController.position.pixels > triggerFetchMoreSize) {
-    //     if (hasMore &&
-    //         currentEndPosition < currentCount &&
-    //         !loading &&
-    //         !inErrorState) {
-    //       setState(() {
-    //         loading = true;
-    //         currentStartPosition = currentEndPosition;
-    //         currentEndPosition =
-    //             min(currentStartPosition + pageCount, currentCount);
-    //       });
-    //     }
-    //   }
-    // });
   }
 
   @override
@@ -76,23 +54,6 @@ class _RecipeListState extends State<RecipeList> {
     // searchTextController.dispose();
     super.dispose();
   }
-
-  // void savePreviousSearches() async {
-  //   final prefs = await SharedPreferences.getInstance();
-  //   prefs.setStringList(prefSearchKey, previousSearches);
-  // }
-
-  // void getPreviousSearches() async {
-  //   final prefs = await SharedPreferences.getInstance();
-  //   if (prefs.containsKey(prefSearchKey)) {
-  //     final searches = prefs.getStringList(prefSearchKey);
-  //     if (searches != null) {
-  //       previousSearches = searches;
-  //     } else {
-  //       previousSearches = <String>[];
-  //     }
-  //   }
-  // }
 
   @override
   Widget build(BuildContext context) {
@@ -109,72 +70,6 @@ class _RecipeListState extends State<RecipeList> {
       ),
     );
   }
-
-  // Widget _buildSearchCard() {
-
-  //   return SearchCard();
-  // }
-
-  // void startSearch(String value) {
-  //   setState(() {
-  //     currentSearchList.clear();
-  //     currentCount = 0;
-  //     currentEndPosition = pageCount;
-  //     currentStartPosition = 0;
-  //     hasMore = true;
-  //     value = value.trim();
-  //     // if (!previousSearches.contains(value)) {
-  //     //   previousSearches.add(value);
-  //     //   savePreviousSearches();
-  //     // }
-  //   });
-  // }
-
-  // Widget _buildRecipeLoader(BuildContext context) {
-  //   return BuildRecipeLoader();
-  // }
-
-  // Widget _buildRecipeList(BuildContext recipeListContext, List<APIHits> hits) {
-  //   final size = MediaQuery.of(context).size;
-  //   const itemHeight = 310;
-  //   final itemWidth = size.width / 2;
-  //   return Flexible(
-  //     child: GridView.builder(
-  //       controller: context.read<SearchStateNotifier>().scrollController,
-  //       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-  //         crossAxisCount: 2,
-  //         childAspectRatio: (itemWidth / itemHeight),
-  //       ),
-  //       itemCount: hits.length,
-  //       itemBuilder: (BuildContext context, int index) {
-  //         return _buildRecipeCard(recipeListContext, hits, index);
-  //       },
-  //     ),
-  //   );
-  // }
-
-  // Widget _buildRecipeCard(
-  //     BuildContext topLevelContext, List<APIHits> hits, int index) {
-  //   final recipe = hits[index].recipe;
-  //   return GestureDetector(
-  //     onTap: () {
-  //       Navigator.push(topLevelContext, MaterialPageRoute(
-  //         builder: (context) {
-  //           final detailRecipe = Recipe(
-  //               label: recipe.label,
-  //               image: recipe.image,
-  //               url: recipe.url,
-  //               calories: recipe.calories,
-  //               totalTime: recipe.totalTime,
-  //               totalWeight: recipe.totalWeight);
-  //           detailRecipe.ingredients = convertIngredients(recipe.ingredients);
-  //           return RecipeDetails(recipe: detailRecipe);
-  //         },
-  //       ));
-  //     },
-  //     child: recipeCard(recipe),
-  //   );
-  // }
 }
 
 class BuildRecipeLoader extends StatelessWidget {

@@ -1,29 +1,21 @@
-import 'package:chopper/chopper.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
+import 'package:logging/logging.dart' as provider_logger;
 
-import 'package:logging/logging.dart' as ProviderLogger;
-
-import 'package:provider/provider.dart';
-import 'package:what_is_state_management_cost_on_flutter/bloc/ui/main_screen.dart';
-import 'data/memory_repository.dart';
-import 'data/search_provider.dart';
-import 'mock_service/mock_service.dart';
-import 'network/model_response.dart';
-import 'network/recipe_model.dart';
-import 'network/recipe_service.dart';
 import 'provider/ui/main_screen.dart';
-import 'riverpod/ui/main_screen.dart';
 
 Future<void> main() async {
   _setupLogging();
   WidgetsFlutterBinding.ensureInitialized();
-  runApp(const BlocApp());
+  runApp(
+    const ProviderApp(),
+    //  const RiverpodApp(),
+    // const BlocApp(),
+  );
 }
 
 void _setupLogging() {
-  ProviderLogger.Logger.root.level = ProviderLogger.Level.ALL;
-  ProviderLogger.Logger.root.onRecord.listen((rec) {
+  provider_logger.Logger.root.level = provider_logger.Level.ALL;
+  provider_logger.Logger.root.onRecord.listen((rec) {
     debugPrint('${rec.level.name}: ${rec.time}: ${rec.message}');
   });
 }

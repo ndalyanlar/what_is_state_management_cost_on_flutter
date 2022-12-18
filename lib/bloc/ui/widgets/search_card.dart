@@ -76,12 +76,13 @@ class _SearchCardState extends State<SearchCard> {
                   IconButton(
                     icon: const Icon(Icons.search),
                     onPressed: () {
-                      final searchController = context
+                      final searchText = context
                           .read<SearchStateNotifier>()
-                          .searchTextController;
+                          .searchTextController
+                          .text;
                       context
                           .read<SearchStateNotifier>()
-                          .startSearch(searchController.text);
+                          .startSearch(searchText);
                     },
                   ),
                 ],

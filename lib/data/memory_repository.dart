@@ -82,8 +82,7 @@ class MemoryRepository extends ChangeNotifier implements Repository {
 
   @override
   Future init() {
-    return Future.delayed(const Duration(seconds: 1));
-    // return Future.value(null);
+    return Future.value(1);
   }
 
   @override
